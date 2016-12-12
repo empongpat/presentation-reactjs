@@ -1,0 +1,29 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+    </head>
+    <body>
+        <div id="root">
+        </div>
+        <script type="text/babel">
+        function formatDate(date) {
+            return date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+        }
+
+        const element = (
+            <h1>
+                今天的日期： {formatDate(new Date())}
+            </h1>
+        )
+
+        ReactDOM.render(
+            element,
+            document.getElementById('root')
+        );
+        </script>
+    </body>
+</html>

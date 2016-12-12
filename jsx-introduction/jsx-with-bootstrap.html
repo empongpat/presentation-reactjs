@@ -1,0 +1,81 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+    </head>
+    <body>
+        <div id="root">
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="signin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Sign in Form</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/babel">
+        
+        const element = (
+        <nav className="navbar navbar-inverse">
+            <div className="container-fluid">
+                <div className="navbar-header">
+                    <a className="navbar-brand" href="#">Infinitiessoft</a>
+                </div>
+                <ul className="nav navbar-nav">
+                    <li className="active"><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li className="dropdown">
+                        <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false">Products <span className="caret"></span>
+                        </a>
+                        <ul className="dropdown-menu">
+                            <li><a href="#">Public Cloud</a></li>
+                            <li><a href="#">CloudFusion</a></li>
+                            <li><a href="#">LogLoop</a></li>
+                            <li><a href="#">AppBalloon</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul className="nav navbar-nav navbar-right">
+                    <li><a href="#" data-toggle="modal" data-target="#signin">Sign in</a></li>
+                </ul>
+            </div>
+        </nav>
+        );
+
+        ReactDOM.render(
+            element,
+            document.getElementById('root')
+        );
+        </script>
+    </body>
+</html>

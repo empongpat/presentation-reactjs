@@ -1,0 +1,92 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+    </head>
+    <body>
+        <style>
+        .timer, .bg-danger, .bg-warning, .bg-success {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+        }
+
+        .timer {
+            background-color: black;
+            color: white;
+        }
+
+
+        .bg-danger.active {
+            background-color: red;
+        }
+        .bg-warning.active {
+            background-color: yellow;
+        }
+        .bg-success.active {
+            background-color: green;
+        }
+
+        </style>
+        <div id="root">
+        </div>
+        <script type="text/babel">
+        const maxSeconds = 10;
+        var seconds = maxSeconds;
+        var lightState = 1;
+        function getLightHtml(light) {
+            if (light === "red") {
+                if (lightState == 1) 
+                    return <div className="bg-danger active"></div>;
+                else 
+                    return <div className="bg-danger"></div>;
+            }
+            if (light === "yellow") {
+                if (lightState == 2) 
+                    return <div className="bg-warning active"></div>;
+                else 
+                    return <div className="bg-warning"></div>;
+            }
+            if (light === "green") {
+                if (lightState == 3) 
+                    return <div className="bg-success active"></div>;
+                else 
+                    return <div className="bg-success"></div>;
+            }
+        }
+        
+        function operatesTrafficLight() {
+            if (seconds == 0) {
+                if (lightState<3) 
+                    lightState++;
+                else
+                    lightState = 1;
+                seconds = maxSeconds;
+            }
+            const element = (
+                <div>
+                    <h1>交通紅綠燈</h1>
+                    <div className="timer"><h1>{seconds--}</h1></div>
+                    {getLightHtml("red")}
+                    {getLightHtml("yellow")}
+                    {getLightHtml("green")}
+                </div>
+            );
+
+            ReactDOM.render(
+                element,
+                document.getElementById("root")
+            );
+        }
+
+        setInterval(operatesTrafficLight, 1000);
+        
+        </script>
+    </body>
+</html>

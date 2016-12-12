@@ -1,0 +1,73 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+    </head>
+    <body>
+        <style>
+        .container {
+            padding-top: 2%;
+        }
+        </style>
+        <div id="root">
+        </div>
+        <script type="text/babel">
+       class Searchbar extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                return(
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <div className="input-group">
+                                <span className="input-group-addon"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                                <input type="text" className="form-control" />
+                                <div className="input-group-btn">
+                                    <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Name <span className="caret"></span></button>
+                                    <ul className="dropdown-menu dropdown-menu-right">
+                                        <li><a href="#">Email</a></li>
+                                        <li><a href="#">ID</a></li>
+                                    </ul> 
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6">
+
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+        class FilterableTable extends React.Component{
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                return(
+                    <div className="container">
+                        <h1>Company's Employees</h1>
+                        <Searchbar />
+                        
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <FilterableTable />,
+            document.getElementById("root")
+        );
+        </script>
+    </body>
+</html>

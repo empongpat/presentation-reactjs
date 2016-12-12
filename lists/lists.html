@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+    </head>
+    <body>
+        <style>
+        li {
+            height: 100px;
+            width: 100px;
+        }
+        </style>
+        <div id="root">
+        </div>
+        <script type="text/babel">
+        class ColorList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    colors: this.props.colors
+                };
+                this.removeColor = this.removeColor.bind(this);
+            }
+
+            removeColor(index) {
+                var newColors = this.state.colors.slice();
+                newColors.splice(index, 1);
+                this.setState({
+                    colors: newColors
+                });
+            }
+
+            render() {
+                var listItems = this.state.colors.map((color, index) => 
+                    <li key={color} style={{backgroundColor: color}} onClick={() => this.removeColor(index)}>
+                    </li>
+                )
+                return(
+                    <ul>{listItems}</ul>
+                );
+            }
+        }
+
+        const colorList = ["red", "yellow", "green", "blue", "black"];
+        ReactDOM.render(
+            <ColorList colors={colorList} />,
+            document.getElementById("root")
+        );
+        </script>
+    </body>
+</html>

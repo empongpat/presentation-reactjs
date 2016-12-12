@@ -1,0 +1,148 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://unpkg.com/react@15/dist/react.js"></script>
+        <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.js"></script>
+    </head>
+    <body>
+        <style>
+        .timer, .bg-danger, .bg-warning, .bg-success {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+        }
+
+        .timer {
+            background-color: black;
+            color: white;
+        }
+
+
+        .bg-danger.active {
+            background-color: red;
+        }
+        .bg-warning.active {
+            background-color: yellow;
+        }
+        .bg-success.active {
+            background-color: green;
+        }
+
+        </style>
+        <div id="root">
+        </div>
+        <script type="text/babel">
+        class Timer extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                return(
+                    <div className="timer"><h1>{this.props.seconds}</h1></div>
+                )
+            }
+        }
+        
+        class RedLight extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                var className;
+                if (this.props.lightState == 1)
+                    className = "bg-danger active";
+                else
+                    className = "bg-danger";
+                return(
+                    <div className={className}></div>
+                )
+            }
+        }
+
+        class YellowLight extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                var className;
+                if (this.props.lightState == 2)
+                    className = "bg-warning active";
+                else
+                    className = "bg-warning";
+                return(
+                    <div className={className}></div>
+                )
+            }
+        }
+        
+        class GreenLight extends React.Component {
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                var className;
+                if (this.props.lightState == 3)
+                    className = "bg-success active";
+                else
+                    className = "bg-success";
+                return(
+                    <div className={className}></div>
+                )
+            }
+        }
+
+        class TrafficLight extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.state = {
+                    seconds : this.props.seconds,
+                    lightState : this.props.lightState
+                };
+            }
+
+            componentDidMount() {
+                setInterval(this.operatesTrafficLight.bind(this), 1000);
+            }
+
+            operatesTrafficLight() {
+                if (this.state.seconds == 0) {
+                    if (this.state.lightState<3) 
+                        this.setState({lightState : this.state.lightState+1});
+                    else
+                        this.setState({lightState : 1});
+                    this.setState({seconds : this.props.seconds});
+                }
+                this.setState({seconds : this.state.seconds - 1});
+            }
+
+            render() {
+                return(
+                    <div>
+                        <h1>交通紅綠燈</h1>
+                        <Timer seconds={this.state.seconds} />
+                        <RedLight lightState={this.state.lightState} />
+                        <YellowLight lightState={this.state.lightState} />
+                        <GreenLight lightState={this.state.lightState} />
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <TrafficLight seconds="10" lightState="1" />,
+            document.getElementById("root")
+        );
+
+        </script>
+    </body>
+</html>
